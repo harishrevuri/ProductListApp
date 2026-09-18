@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.productlist.ui.productlist.ProductListViewModelTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-09-18T23:30:45.330Z" hostname="Harishs-MacBook-Pro.local" time="0.486">
+  <properties/>
+  <testcase name="successful load with products emits Content" classname="com.example.productlist.ui.productlist.ProductListViewModelTest" time="0.456"/>
+  <testcase name="toggleSaved twice on the same product returns it to unsaved" classname="com.example.productlist.ui.productlist.ProductListViewModelTest" time="0.006"/>
+  <testcase name="successful load with an empty list emits Empty" classname="com.example.productlist.ui.productlist.ProductListViewModelTest" time="0.003"/>
+  <testcase name="initial state is Loading before the fetch completes" classname="com.example.productlist.ui.productlist.ProductListViewModelTest" time="0.001"/>
+  <testcase name="failed load emits Error" classname="com.example.productlist.ui.productlist.ProductListViewModelTest" time="0.005"/>
+  <testcase name="toggleSaved marks a product as saved without a new network call" classname="com.example.productlist.ui.productlist.ProductListViewModelTest" time="0.003"/>
+  <testcase name="retry after an error re-fetches and can succeed" classname="com.example.productlist.ui.productlist.ProductListViewModelTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
