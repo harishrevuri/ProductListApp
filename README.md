@@ -41,38 +41,13 @@ Every arrow points at an **interface**, not a concrete class, which is
 what makes each layer replaceable and each layer above it testable in
 isolation.
 
-## 3. What was intentionally left out (per the brief) and where it would go
-
-- **Room** — `SavedProductsDataSource` is already an interface backed by
-  an in-memory `Map`. A production version would add a `@Dao` (e.g.
-  `SavedProductDao`) and a `RoomSavedProductsDataSource : SavedProductsDataSource`
-  in `data/local/`, using `@Entity` on a Room-mapped copy of `Product`
-  (or `Product` itself). `ProductListApp.onCreate()` is the only place
-  that would need to change (swap which implementation gets constructed)
-  — nothing in the repository, ViewModel, or UI would change.
-- **Authentication** — would live as an `AuthInterceptor` added to the
-  `OkHttpClient` in `ProductListApp.onCreate()` (attaching a token
-  header), plus an `AuthRepository`/token storage layer sitting next to
-  `ProductRepository`. `ProductApiService` calls wouldn't need to change.
-- **Pagination** — `ProductsResponse` already carries `total`/`skip`/`limit`
-  from the API (currently unused). `ProductApiService.getProducts` would
-  gain `@Query("limit")` / `@Query("skip")` parameters, and
-  `ProductListViewModel` would track the next `skip` and expose a
-  `loadMore()` the `LazyColumn` calls near the end of the list (e.g. via
-  `LazyListState`), likely using Paging 3 (`PagingSource` wrapping
-  `ProductRemoteDataSource`) for production-grade infinite scroll.
-- **Production deployment** — signing configs, `minifyEnabled`/R8 rules,
-  a release keystore, CI (e.g. GitHub Actions running `./gradlew test
-  assembleRelease`), and Play Console / internal-track upload — none of
-  which affect the app's architecture, only the build/release pipeline.
-
-## 4. Running the unit tests
+## 3. Running the unit tests
 
 ```bash
 ./gradlew test
 ```
 
-## 5. Generating a test coverage report (JaCoCo)
+## 4. Generating a test coverage report (JaCoCo)
 
 A `jacocoTestReport` task is configured in `app/build.gradle.kts`
 (JaCoCo 0.8.12), scoped to the `debug` unit test run so ViewModel and
